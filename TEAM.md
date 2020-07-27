@@ -1,0 +1,5 @@
+- [Metin BEKTAS](https://github.com/methbkts)
+- [Laetitia MANSO](https://github.com/lmanso)
+- [Victor GRANDCLEMENT](https://github.com/Victor-grd)
+- [Olivier CHARON](https://github.com/OlivierCharon)
+- [Wissem KHALED](https://github.com/WissemKhaled)
