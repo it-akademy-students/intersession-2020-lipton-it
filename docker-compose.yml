@@ -45,7 +45,7 @@ services:
       - lipton
 
   adminer:
-    image: adminer: 4.7
+    image: adminer:4.7
     container_name: lipton-adminer
     restart: always
     ports:
