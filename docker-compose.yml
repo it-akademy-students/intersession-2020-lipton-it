@@ -27,8 +27,8 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
-#    volumes:
-#      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
       - lipton
 
@@ -45,14 +45,13 @@ services:
       - lipton
 
   adminer:
-    image: adminer:latest
+    image: adminer: 4.7
     container_name: lipton-adminer
-    restart: unless-stopped
+    restart: always
     ports:
       - 8080:8080
     volumes:
       - ./docker-compose/adminer:/var/www/html/
-      - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
       - lipton
     depends_on:

@@ -9,6 +9,11 @@
         <script type="text/javascript" src="js/app.js" async></script>
     </head>
     <body>
+        <div id="app">
+            <example-component>
+            </example-component>
+        </div>
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
