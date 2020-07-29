@@ -1,0 +1,62 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: lipton
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: lipton
+    container_name: lipton-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - lipton
+
+  db:
+    image: mysql:5.7
+    container_name: lipton-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - lipton
+
+  nginx:
+    image: nginx:alpine
+    container_name: lipton-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - lipton
+
+  adminer:
+    image: adminer: 4.7
+    container_name: lipton-adminer
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./docker-compose/adminer:/var/www/html/
+    networks:
+      - lipton
+    depends_on:
+      - db
+
+networks:
+  lipton:
+    driver: bridge
