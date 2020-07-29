@@ -57,6 +57,16 @@ services:
     depends_on:
       - db
 
+  nodejs:
+    image: node:lts-alpine
+    container_name: lipton-nodejs
+    working_dir: /usr/src/app/
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - lipton
+    command: npm run watch
+
 networks:
   lipton:
     driver: bridge
