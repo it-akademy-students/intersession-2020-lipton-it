@@ -21,3 +21,10 @@ Homestead.yaml
 Homestead.json
 .vagrant
 .phpunit.result.cache
+/public/css/app.css
+/public/js/app.js
+/docker-compose/adminer/.adminer-init
+
+# Personalised
+
+## 
