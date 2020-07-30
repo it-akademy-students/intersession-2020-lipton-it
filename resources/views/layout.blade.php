@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-        <layout-component page="explication"></layout-component>
+        <layout-component></layout-component>
     </div>
 
 </body>
