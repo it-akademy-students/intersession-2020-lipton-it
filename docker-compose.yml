@@ -60,6 +60,7 @@ services:
   nodejs:
     image: node:lts-alpine
     container_name: lipton-nodejs
+    restart: unless-stopped
     working_dir: /usr/src/app/
     volumes:
       - ./:/usr/src/app
