@@ -45,7 +45,7 @@ services:
       - lipton
 
   adminer:
-    image: adminer: 4.7
+    image: adminer:4.7
     container_name: lipton-adminer
     restart: always
     ports:
@@ -56,6 +56,17 @@ services:
       - lipton
     depends_on:
       - db
+
+  nodejs:
+    image: node:lts-alpine
+    container_name: lipton-nodejs
+    restart: unless-stopped
+    working_dir: /usr/src/app/
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - lipton
+    command: npm run watch-poll
 
 networks:
   lipton:
