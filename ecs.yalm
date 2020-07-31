@@ -1,0 +1,8 @@
+# ecs.yaml
+services:
+    PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
+        syntax: short
+parameters:
+    sets:
+        - 'clean-code'
+        - 'psr12'
