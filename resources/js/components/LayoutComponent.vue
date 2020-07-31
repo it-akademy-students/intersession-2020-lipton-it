@@ -20,7 +20,7 @@
         components: {
             HeaderComponent,
             FooterComponent,
-            ExplicationComponent
+            ExplicationComponent,
         },
         mounted() {
             console.log("Component mounted.");
