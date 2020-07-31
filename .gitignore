@@ -8,8 +8,9 @@ app/storage/
 
 public/storage
 public/hot
-
-# Laravel 5 & Lumen specific with changed public path
+public/images
+public/css
+public/js
 public_html/storage
 public_html/hot
 
@@ -20,7 +21,4 @@ Homestead.json
 .vagrant
 .phpunit.result.cache
 .idea
-
-public/css/app.css
-public/js/app.js
 docker-compose/adminer/.adminer-init
