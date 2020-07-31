@@ -22,3 +22,5 @@ Homestead.json
 .phpunit.result.cache
 .idea
 docker-compose/adminer/.adminer-init
+tmp/repo
+tmp/log

@@ -8,7 +8,7 @@ else
     mkdir -p ./tmp/log
 fi
 
-findAdminer=($(find -type f -path '*tmp*/repo*' -name 'adminer.php')) 
+findAdminer=($(find -type f -path '*tmp*/repo*' -name 'adminer.php'))
 rm $findAdminer
 
 echo "Start analyzing :"
@@ -29,7 +29,7 @@ echo "4/13 ecs"
 echo "[▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░]   30%"
 vendor/bin/ecs check ./tmp/repo --set control-structures &>> ./tmp/log/ecs_result.md
 echo "5/13 ecs"
-vendor/bin/ecs check ./tmp/repo --set dead-code &>> ./tmp/log/ecs_result.md 
+vendor/bin/ecs check ./tmp/repo --set dead-code &>> ./tmp/log/ecs_result.md
 echo "6/13 ecs"
 echo "[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░]   40%"
 vendor/bin/ecs check ./tmp/repo --set docblock &>> ./tmp/log/ecs_result.md
@@ -53,32 +53,8 @@ echo "13/13 ecs"
 echo "ecs ended successfully"
 
 echo "start php codesniffer"
-vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 ./tmp/repo &> ./tmp/log/phpcs_result.md 
+vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 ./tmp/repo &> ./tmp/log/phpcs_result.md
 echo "[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░]   90% php codesniffer ended successfully"
 
 echo "[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓]   100%"
 echo "analyze ended successfully"
-
-if [[ -f "./tmp/log/progpilot_err" ]]
-then
-    echo "Progpilot returned errors"
-    echo ""
-    cat ./tmp/log/progpilot_err
-    echo ""
-fi
-
-if [[ -f "./tmp/log/ecs_err" ]]
-then
-    echo "Ecs returned errors"
-    echo ""
-    cat ./tmp/log/ecs_err
-    echo ""
-fi
-
-if [[ -f "./tmp/log/phpcs_err" ]]
-then
-    echo "PHPCS returned errors"
-    echo ""
-    cat ./tmp/log/phpcs_err
-    echo ""
-fi
