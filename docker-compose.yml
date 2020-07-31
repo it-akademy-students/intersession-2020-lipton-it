@@ -60,12 +60,13 @@ services:
   nodejs:
     image: node:lts-alpine
     container_name: lipton-nodejs
+    restart: unless-stopped
     working_dir: /usr/src/app/
     volumes:
       - ./:/usr/src/app
     networks:
       - lipton
-    command: npm run watch
+    command: npm run watch-poll
 
 networks:
   lipton:
