@@ -11,6 +11,8 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "github-actions"
     assignees:
       - "methbkts"
     reviewers:
@@ -21,6 +23,8 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "npm"
     assignees:
       - "methbkts"
     reviewers:
@@ -31,8 +35,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "composer"      
     assignees:
       - "methbkts"
     reviewers:
       - "methbkts"      
-      
