@@ -2,9 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables/breackpoints';
-@import 'variables/colors';
-@import 'variables/fonts';
+@import "variables";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -14,3 +12,4 @@
 @import 'components/header';
 @import 'components/footer';
 @import 'main';
+@import 'form';
