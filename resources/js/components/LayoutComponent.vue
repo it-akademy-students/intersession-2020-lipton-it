@@ -1,35 +1,71 @@
 <template>
     <div class="layout">
-        <header-component></header-component>
+        <!-- <div class="header">
+            <div class="header__list">
+                <button class="header__item">check</button>
+                <button class="header__item">donation</button>
+                <button class="header__item">source code</button>
+                <button class="header__item">explication</button>
+            </div>
+        </div> -->
 
+        <header-component v-on:childToParent="navClick" ></header-component>
         <div class="layout__content">
             <explication-component v-if="page === 'explication'"> </explication-component>
-            <!-- {{ page }} -->
+            <donation-component  v-if="page === 'donation'"> </donation-component>
+            <check-component  v-if="page === 'check'"> </check-component>
         </div>
 
-        <footer-component></footer-component>
+        <div class="footer"></div>
     </div>
 </template>
 
 <script>
-    import ExplicationComponent from "./ExplicationComponent";
     import HeaderComponent from "./HeaderComponent";
-    import FooterComponent from "./FooterComponent";
+    import ExplicationComponent from "./ExplicationComponent";
+    import DonationComponent from "./DonationComponent";
+    import CheckComponent from "./CheckComponent";
 
     export default {
         components: {
             HeaderComponent,
-            FooterComponent,
             ExplicationComponent,
+            DonationComponent,
+            CheckComponent
         },
         mounted() {
             console.log("Component mounted.");
         },
         props: {
-            page: {
+            myData: {
                 type: String,
-                default: 'explication',
-            },
+                défault : 'défault value'
+            }
         },
+        data () {
+            return {
+                fromChild: '', // This value is set to the value emitted by the child
+                page: 'explication',
+                mail: '',
+                repo: ''
+            }
+        },
+        methods: {
+            // Triggered when `childToParent` event is emitted by the child.
+            navClick (event) {
+                console.log(event.target.nav);
+                    const { value } = event.target;
+                    this.page = value;
+            },
+            childToParent (event) {
+                    this.repo = event[0];
+                    this.mail = event[1];
+            }
+            
+        }
+
+
+
+
     };
 </script>
