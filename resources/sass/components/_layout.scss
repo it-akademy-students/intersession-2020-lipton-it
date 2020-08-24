@@ -5,7 +5,8 @@
     &__content {
         position: absolute;
         right: 0;
-        width: 45%;
+        width: calc(100vw - 650px);
+        min-width: 650px;
         padding: 50px;
     }
 

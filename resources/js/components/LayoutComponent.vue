@@ -1,25 +1,31 @@
 <template>
     <div class="layout">
-        <header-component></header-component>
+        <div class="header">
+            <div class="header__list">
+                <button class="header__item">check</button>
+                <button class="header__item">donation</button>
+                <button class="header__item">source code</button>
+                <button class="header__item">explication</button>
+            </div>
+        </div>
 
         <div class="layout__content">
             <explication-component v-if="page === 'explication'"> </explication-component>
-            <!-- {{ page }} -->
+            <donation-component v-on:childToParent="onChildClick" v-if="page === 'donation'"> </donation-component>
+            <check-component  v-on:childToParent="onChildClick" v-if="page === 'check'"> </check-component>
         </div>
 
-        <footer-component></footer-component>
+        <div class="footer"></div>
     </div>
 </template>
 
 <script>
     import ExplicationComponent from "./ExplicationComponent";
-    import HeaderComponent from "./HeaderComponent";
-    import FooterComponent from "./FooterComponent";
+    import DonationComponent from "./DonationComponent";
+    import CheckComponent from "./CheckComponent";
 
     export default {
         components: {
-            HeaderComponent,
-            FooterComponent,
             ExplicationComponent,
         },
         mounted() {
@@ -28,8 +34,20 @@
         props: {
             page: {
                 type: String,
-                default: 'explication',
+                default: 'check',
             },
         },
+        data() {
+            return {
+                mail: '',
+                repo: ''
+            }
+        },
+        methods: {
+            onChildClick (event) {
+                this.repo = event[0];
+                this.mail = event[1];
+            }
+        }
     };
 </script>
