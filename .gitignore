@@ -24,3 +24,4 @@ Homestead.json
 /public/css/app.css
 /public/js/app.js
 /docker-compose/adminer/.adminer-init
+public/images/background-desktop.png

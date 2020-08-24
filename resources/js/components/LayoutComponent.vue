@@ -1,10 +1,9 @@
 <template>
     <div class="layout">
-        <header-component></header-component>
+        <header-component v-on:childToParent="onChildClick" ></header-component>
 
         <div class="layout__content">
             <explication-component v-if="page === 'explication'"> </explication-component>
-            <!-- {{ page }} -->
         </div>
 
         <footer-component></footer-component>
@@ -26,10 +25,28 @@
             console.log("Component mounted.");
         },
         props: {
-            page: {
+            myData: {
                 type: String,
-                default: 'explication',
-            },
+                défault : 'défault value'
+            }
         },
+        data () {
+            return {
+                fromChild: '', // This value is set to the value emitted by the child
+                page: 'explication'
+            }
+        },
+        methods: {
+            // Triggered when `childToParent` event is emitted by the child.
+            onChildClick (event) {
+                const { value } = event.target;
+                this.page = value;
+                console.log(this.page);
+            }
+        }
+
+
+
+
     };
 </script>
