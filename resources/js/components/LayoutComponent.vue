@@ -9,11 +9,11 @@
             </div>
         </div> -->
 
-        <header-component v-on:childToParent="onChildClick" ></header-component>
+        <header-component v-on:childToParent="navClick" ></header-component>
         <div class="layout__content">
             <explication-component v-if="page === 'explication'"> </explication-component>
-            <donation-component v-on:childToParent="onChildClick" v-if="page === 'donation'"> </donation-component>
-            <check-component  v-on:childToParent="onChildClick" v-if="page === 'check'"> </check-component>
+            <donation-component  v-if="page === 'donation'"> </donation-component>
+            <check-component  v-if="page === 'check'"> </check-component>
         </div>
 
         <div class="footer"></div>
@@ -21,13 +21,17 @@
 </template>
 
 <script>
+    import HeaderComponent from "./HeaderComponent";
     import ExplicationComponent from "./ExplicationComponent";
     import DonationComponent from "./DonationComponent";
     import CheckComponent from "./CheckComponent";
 
     export default {
         components: {
+            HeaderComponent,
             ExplicationComponent,
+            DonationComponent,
+            CheckComponent
         },
         mounted() {
             console.log("Component mounted.");
@@ -48,18 +52,16 @@
         },
         methods: {
             // Triggered when `childToParent` event is emitted by the child.
-            onChildClick (event) {
-                if( event === 'nav') {
+            navClick (event) {
+                console.log(event.target.nav);
                     const { value } = event.target;
                     this.page = value;
-                    console.log(this.page);
-                } else if ( event === 'mail') {
+            },
+            childToParent (event) {
                     this.repo = event[0];
                     this.mail = event[1];
-                }
-
-                
             }
+            
         }
 
 
