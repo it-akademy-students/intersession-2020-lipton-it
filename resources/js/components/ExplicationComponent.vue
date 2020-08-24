@@ -1,5 +1,9 @@
 <template>
     <div>
+        <!-- <button type="button" name="button" v-on:click="emitToParent">Click me to increment!</button>
+
+        <label for="child-input">Child input: </label>
+        <input id="child-input" type="text" name="msg"  v-model="childMessage"> -->
         <h1  class="layout__title">Explication</h1>
         <!-- <p   class="layout__description">{{ description }}</p> -->
             
@@ -11,9 +15,22 @@
         En attendant prenez un café.
         </p>
     </div>
+
 </template>
 
 <script>
     export default {
+        //  data() {
+        //     return {
+        //     childMessage: ''
+        //     }
+        // },
+        // methods: {
+        //     // Define the method that emits data to the parent as the first parameter to `$emit()`.
+        //     // This is referenced in the <template> call in the parent. The second parameter is the payload.
+        //     emitToParent (event) {
+        //     this.$emit('childToParent', this.childMessage)
+        //     }
+        // }
     };
 </script>
