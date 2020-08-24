@@ -37,6 +37,7 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 - `docker-compose build app`
 - `docker-compose up -d`
+- `docker-compose exec app composer install`
 - `docker-compose exec nodejs npm install`
 - `docker run -it --rm -e "TERM=xterm-256color" -v $(pwd):/usr/src/app -w /usr/src/app node:lts-alpine npm run dev`
 
