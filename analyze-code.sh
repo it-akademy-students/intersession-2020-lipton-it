@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ ! -d "./tmp/log" ]
 then
     mkdir -p ./tmp/log
@@ -8,9 +7,24 @@ else
     mkdir -p ./tmp/log
 fi
 
+#check size of repo
+dirSize=`du -b tmp/repo | awk '{print $1}'`
+if [ $dirSize -ge 100000000 ]
+then
+    rm -rf repo
+    echo 'ko, je suis trop gros'
+    return 1 2> /dev/null || exit 1
+else
+    echo 'ok'
+fi
+
+#find files doesnt have .php in ext and delete this
+find . -type f -path '*tmp/repo*' -not -name "*.php" -delete
+#find and delete file adminer.php
 findAdminer=($(find -type f -path '*tmp*/repo*' -name 'adminer.php'))
 rm $findAdminer
 
+#Start analyzing with library
 echo "Start analyzing :"
 echo "[░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%"
 echo "start progpilot"
