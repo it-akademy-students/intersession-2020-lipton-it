@@ -3,9 +3,7 @@
 <p align="center"><img src="lipton-it.png"></p>
 
 <p align="center">
-
-![Laravel Prod](https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master)
-
+<a href="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master"><img src="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master" alt="Build Status"></a>
 </p>
 
 ## Mise en place du projet
