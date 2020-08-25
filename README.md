@@ -1,6 +1,7 @@
 # Intersession 2020 - Groupe Lipton IT
 
-<p align="center"> 
+<p align="center">
+
 ![Laravel Prod](https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master)
 </p>
 
