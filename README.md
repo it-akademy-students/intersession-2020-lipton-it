@@ -1,8 +1,10 @@
-<p align="center">    
-    
-![Laravel Prod](https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master)
+# Intersession 2020 - Groupe Lipton IT
 
+<p align="center"> 
+![Laravel Prod](https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master)
 </p>
+
+## Mise en place du projet
 
 ### Mise en place avec Docker
 
