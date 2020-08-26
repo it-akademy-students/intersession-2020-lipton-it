@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db0a7b08fe9416b3043291a64f676a46",
+    "content-hash": "11c0d6174b8e9d263f6cb5dfc5a23ea1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1317,39 +1317,39 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v12.2.0",
+            "version": "v12.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "4331fd1444a4034a8088e8957a8200dd9673313b"
+                "reference": "63c04086c61435d9e84c450b384ff4d095e531cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/4331fd1444a4034a8088e8957a8200dd9673313b",
-                "reference": "4331fd1444a4034a8088e8957a8200dd9673313b",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/63c04086c61435d9e84c450b384ff4d095e531cb",
+                "reference": "63c04086c61435d9e84c450b384ff4d095e531cb",
                 "shasum": ""
             },
             "require": {
                 "dompdf/dompdf": "^0.8.0",
                 "ext-json": "*",
-                "illuminate/contracts": "^6.0|^7.0",
-                "illuminate/database": "^6.0|^7.0",
-                "illuminate/http": "^6.0|^7.0",
-                "illuminate/log": "^6.0|^7.0",
-                "illuminate/notifications": "^6.0|^7.0",
-                "illuminate/routing": "^6.0|^7.0",
-                "illuminate/support": "^6.0|^7.0",
-                "illuminate/view": "^6.0|^7.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "illuminate/http": "^6.0|^7.0|^8.0",
+                "illuminate/log": "^6.0|^7.0|^8.0",
+                "illuminate/notifications": "^6.0|^7.0|^8.0",
+                "illuminate/routing": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "illuminate/view": "^6.0|^7.0|^8.0",
                 "moneyphp/money": "^3.2",
                 "nesbot/carbon": "^2.0",
                 "php": "^7.2",
-                "stripe/stripe-php": "^7.29",
+                "stripe/stripe-php": "^7.39",
                 "symfony/http-kernel": "^4.3|^5.0",
                 "symfony/intl": "^4.3|^5.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^4.0|^5.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
                 "phpunit/phpunit": "^8.0|^9.0"
             },
             "suggest": {
@@ -1387,7 +1387,7 @@
                 "laravel",
                 "stripe"
             ],
-            "time": "2020-07-21T15:04:05+00:00"
+            "time": "2020-08-25T17:02:36+00:00"
         },
         {
             "name": "laravel/framework",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit="donate" method="post" id="payment-form">
+    <form method="post" id="payment-form">
       <div class="form-row inline">
         <div class="col-4 d-flex flex-column">
           <label for="amount">Montant</label>
@@ -14,6 +14,20 @@
           />
         </div>
         <div class="col-8 d-flex flex-column">
+          <label for="card-holder-name">Nom inscrit sur la carte</label>
+          <input
+            class="StripeElement"
+            name="card-holder-name"
+            id="card-holder-name"
+            type="text"
+            placeholder="John Doe"
+            v-model="cardHolderName"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-row inline">
+        <div class="col d-flex flex-column">
           <label for="card-element">Carte de crédit</label>
           <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
@@ -24,7 +38,7 @@
         <div id="card-errors" role="alert"></div>
       </div>
 
-      <button class="btn btn-success">Donner</button>
+      <button id="card-button" class="btn btn-success" @click.prevent="donate()">Donner</button>
     </form>
   </div>
 </template>
@@ -34,101 +48,42 @@ export default {
   data() {
     return {
       amount: 10,
+      cardHolderName: 'Olivier CHARON',
       publishableKey: process.env.MIX_STRIPE_KEY,
     };
   },
   methods: {
-    stripeInstance: () => {
-      const publishableKey = process.env.MIX_STRIPE_KEY;
-      console.log("hello world");
-      console.log(publishableKey);
-      // Create a Stripe client.
-      var stripe = Stripe(publishableKey);
+    stripeInit() {
+      const stripe = Stripe(process.env.MIX_STRIPE_KEY);
 
-      // Create an instance of Elements.
-      var elements = stripe.elements();
+      const elements = stripe.elements();
+      const cardElement = elements.create("card");
 
-      // Custom styling can be passed to options when creating an Element.
-      // (Note that this demo uses a wider set of styles than the guide below.)
-      var style = {
-        base: {
-          color: "#32325d",
-          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-          fontSmoothing: "antialiased",
-          fontSize: "16px",
-          "::placeholder": {
-            color: "#aab7c4",
-          },
-        },
-        invalid: {
-          color: "#fa755a",
-          iconColor: "#fa755a",
-        },
-      };
+      cardElement.mount("#card-element");
+    },
+    async donate() {
+      const stripe = Stripe(this.publishableKey);
+      const elements = stripe.elements();
+      var cardElement = elements.getElement("card");
+      var cardHolderName = this.cardHolderName;
 
-      // Create an instance of the card Element.
-      var card = elements.create("card", { style: style });
-
-      // Add an instance of the card Element into the `card-element` <div>.
-      card.mount("#card-element");
-
-      // Handle real-time validation errors from the card Element.
-      card.on("change", function (event) {
-        var displayError = document.getElementById("card-errors");
-        if (event.error) {
-          displayError.textContent = event.error.message;
-        } else {
-          displayError.textContent = "";
+      const { paymentMethod, error } = await stripe.createPaymentMethod(
+        "card",
+        cardElement,
+        {
+          billing_details: { name: cardHolderName.value },
         }
-      });
+      );
 
-      // Handle form submission.
-      var form = document.getElementById("payment-form");
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        stripe.createToken(card).then(function (result) {
-          if (result.error) {
-            // Inform the user if there was an error.
-            var errorElement = document.getElementById("card-errors");
-            errorElement.textContent = result.error.message;
-          } else {
-            // Send the token to your server.
-            stripeTokenHandler(result.token);
-          }
-        });
-      });
-
-      // Submit the form with the token ID.
-      function stripeTokenHandler(token) {
-        // Insert the token ID into the form so it gets submitted to the server
-        var form = document.getElementById("payment-form");
-        var hiddenInput = document.createElement("input");
-        hiddenInput.setAttribute("type", "hidden");
-        hiddenInput.setAttribute("name", "stripeToken");
-        hiddenInput.setAttribute("value", token.id);
-        form.appendChild(hiddenInput);
-
-        // Submit the form
-        form.submit();
+      if (error) {
+        alert("Désolé, votre don n'a pas pu aboutir: " + error.message);
+      } else {
+        console.log(paymentMethod.id);
       }
     },
-    donate() {
-// Set your secret key. Remember to switch to your live secret key in production!
-// See your keys here: https://dashboard.stripe.com/account/apikeys
-const stripe = require('stripe')(this.publishableKey);
-
-const paymentIntent = await stripe.paymentIntents.create({
-  amount: this.amount,
-  currency: 'auto',
-  // Verify your integration in this guide by including this parameter
-  metadata: {integration_check: 'accept_a_payment'},
-});
-
-    }
   },
   mounted() {
-    this.stripeInstance();
+    this.stripeInit();
   },
 };
 </script>
