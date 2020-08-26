@@ -14,12 +14,6 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    donate() {
-      console.log("a donné");
-    },
-  },
-};
+export default {};
 </script>
 
