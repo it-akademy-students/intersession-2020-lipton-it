@@ -20,3 +20,11 @@
         font-size: 3em;
     }
 }
+
+
+@media only screen and (max-width: 605px) {
+    .layout__content {
+        width: auto;
+        min-width: 0;
+    }
+}
