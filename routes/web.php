@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\ConfirmationMail;
+use App\Mail\ResultsMail;
+use App\Mail\ErrorMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/confirmationMail', function () {
+    Mail::to('example@example.com')
+//        ->queue()
+        ->send(new ConfirmationMail());
+
+    return new ConfirmationMail();
+});
+Route::get('/resultsMail', function () {
+        Mail::to('example@example.com')
+//        ->queue()
+        ->send(new ResultsMail());
+
+    return new ResultsMail();
+});
+Route::get('/errorMail', function () {
+        Mail::to('example@example.com')
+//        ->queue()
+        ->send(new ErrorMail());
+
+    return new ErrorMail();
+});
 
 Auth::routes(['register' => false]);
 Route::get('/admin', 'AdminController@index')->name('admin');
