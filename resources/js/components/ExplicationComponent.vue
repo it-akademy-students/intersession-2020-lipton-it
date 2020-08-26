@@ -32,5 +32,8 @@
         //     this.$emit('childToParent', this.childMessage)
         //     }
         // }
+        mounted() {
+            localStorage.page = 'explication'
+        },
     };
 </script>
