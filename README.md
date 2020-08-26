@@ -14,9 +14,10 @@
 - `docker-compose up -d`
 - `docker-compose exec app composer install`
 - `docker-compose exec nodejs npm install`
-- `docker run -it --rm -e "TERM=xterm-256color" -v $(pwd):/usr/src/app -w /usr/src/app node:lts-alpine npm run dev`
+- `docker-compose exec nodejs npm run dev` or `docker run -it --rm -e "TERM=xterm-256color" -v $(pwd):/usr/src/app -w /usr/src/app node:lts-alpine npm run dev` if it doesn't work
 
 ### Mise en place sans Docker
 
+- `composer install`
 - `npm install`
 - `npm run dev`
