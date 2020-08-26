@@ -14,6 +14,8 @@ body {
 
 @media only screen and (max-width: 605px) {
     body {
-        background: none;
+        background-image: url('../images//background-minify.png');
+        background-size: auto;
+        background-position: right bottom;
     }
 }

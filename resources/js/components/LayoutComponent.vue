@@ -53,11 +53,10 @@
         methods: {
             // Triggered when `childToParent` event is emitted by the child.
             navClick (event) {
-                console.log(event.target.nav);
-                    const { value } = event.target;
-                    this.page = value;
+                const { value } = event.target;
+                this.page = value;
             },
-            childToParent (event) {
+            mailClick (event) {
                     this.repo = event[0];
                     this.mail = event[1];
             }

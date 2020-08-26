@@ -6,3 +6,9 @@
     bottom: 0;
     right: 0;
 }
+
+@media only screen and (max-width: 605px) {
+    body {
+        background-color: none;
+    }
+}

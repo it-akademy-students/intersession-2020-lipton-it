@@ -35,7 +35,7 @@
             // Define the method that emits data to the parent as the first parameter to $emit().
             // This is referenced in the <template> call in the parent. The second parameter is the payload.
             emitToParent (event) {
-            this.$emit('childToParent', [this.repositoryInput, this.mailInput])
+            this.$emit('mailClick', [this.repositoryInput, this.mailInput])
             }
         }
     };
