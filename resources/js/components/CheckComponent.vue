@@ -27,15 +27,20 @@
     export default {
          data() {
             return {
-                repositoryInput: '',
-                mailInput: ''
+                repositoryInput: localStorage.repo,
+                mailInput: localStorage.mail
             }
+        },
+        mounted() {
+            localStorage.page = 'check'
         },
         methods: {
             // Define the method that emits data to the parent as the first parameter to $emit().
             // This is referenced in the <template> call in the parent. The second parameter is the payload.
-            emitToParent (event) {
-            this.$emit('mailClick', [this.repositoryInput, this.mailInput])
+            emitToParent (event) {  
+                localStorage.repo = this.repositoryInput;
+                localStorage.mail = this.mailInput;
+                this.$emit('childToParent', [this.repositoryInput, this.mailInput])
             }
         }
     };
