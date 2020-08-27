@@ -38,7 +38,7 @@
         <div id="card-errors" role="alert"></div>
       </div>
 
-      <button id="card-button" class="btn btn-success" @click.prevent="donate()">Donner</button>
+      <button id="card-button" class="btn btn-success" @click.prevent="donate(cardElement)">Donner</button>
     </form>
   </div>
 </template>
@@ -48,32 +48,42 @@ export default {
   data() {
     return {
       amount: 10,
-      cardHolderName: 'Olivier CHARON',
+      cardHolderName: "Olivier CHARON",
       publishableKey: process.env.MIX_STRIPE_KEY,
     };
   },
+  computed: {
+    stripe: function () {
+      const stripe = Stripe(this.publishableKey);
+      return stripe;
+    },
+    cardElement: function () {
+      console.log("cardELement()");
+      const elements = this.stripe.elements();
+      var cardElement = elements.create("card");
+      console.log("cardELement() end");
+      return cardElement;
+    },
+  },
   methods: {
     stripeInit() {
-      const stripe = Stripe(process.env.MIX_STRIPE_KEY);
+      console.log("stripe init");
+      console.log(this.amount);
+      console.log(this.cardElement);
 
-      const elements = stripe.elements();
-      const cardElement = elements.create("card");
-
-      cardElement.mount("#card-element");
+      this.cardElement.mount("#card-element");
     },
-    async donate() {
-      const stripe = Stripe(this.publishableKey);
-      const elements = stripe.elements();
-      var cardElement = elements.getElement("card");
+    async donate(cardElement) {
       var cardHolderName = this.cardHolderName;
+      var cardElement = this.cardElement;
+      var stripe = this.stripe;
+      console.log(cardElement);
 
-      const { paymentMethod, error } = await stripe.createPaymentMethod(
-        "card",
-        cardElement,
-        {
-          billing_details: { name: cardHolderName.value },
-        }
-      );
+      const { paymentMethod, error } = await stripe.createPaymentMethod({
+        type: "card",
+        card: cardElement,
+        billing_details: { name: cardHolderName.value },
+      });
 
       if (error) {
         alert("Désolé, votre don n'a pas pu aboutir: " + error.message);
@@ -83,6 +93,8 @@ export default {
     },
   },
   mounted() {
+    console.log("computed");
+    console.log(this.amount);
     this.stripeInit();
   },
 };
