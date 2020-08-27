@@ -9,13 +9,13 @@
             </div>
         </div> -->
 
-        <header-component v-on:childToParent="navClick"></header-component>
+        <header-component v-on:childToParent="navClick" :prop3="repo"></header-component>
         <div class="layout__content">
             <explication-component v-if="page === 'explication'">
             </explication-component>
             <donation-component v-if="page === 'donation'">
             </donation-component>
-            <check-component v-if="page === 'check'"> </check-component>
+            <check-component v-on:childToParent="mailClick" v-if="page === 'check'"> </check-component>
         </div>
 
         <div class="footer"></div>
@@ -44,18 +44,14 @@ export default {
         if (localStorage.mail) this.mail = localStorage.mail;
         if (localStorage.repo) this.repo = localStorage.repo;
     },
-    props: {
-        myData: {
-            type: String,
-            défault: "défault value"
-        }
-    },
+
     data() {
         return {
             fromChild: "", // This value is set to the value emitted by the child
             page: localStorage.page,
             mail: "",
-            repo: ""
+            repo: "",
+            boolean: false
         };
     },
     methods: {

@@ -25,6 +25,10 @@
         }
     }
 }
+.disabled {
+    color: grey;
+    pointer-events: none;
+}
 
 @media only screen and (max-width: 605px){
     .header__list {
