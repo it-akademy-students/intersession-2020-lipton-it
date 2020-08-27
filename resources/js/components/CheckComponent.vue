@@ -14,8 +14,7 @@
                 <input name="repo" type="email" placeholder="repo link" class="form__input-text" v-model="mailInput">
             </div>
 
-            <input type="submit" name="button" value="Send" v-on:click="emitToParent">
-
+            <input class="form__submit" type="submit" name="button" value="Send" v-on:click="emitToParent">
         </form>
 
     </div>
