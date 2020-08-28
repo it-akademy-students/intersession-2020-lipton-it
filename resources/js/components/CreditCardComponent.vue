@@ -87,8 +87,25 @@ export default {
 
       if (error) {
         alert("Désolé, votre don n'a pas pu aboutir: " + error.message);
+        return;
       } else {
+        stripe.createToken(cardElement).then(function (result) {
+          var $
+        });
         console.log(paymentMethod.id);
+          console.log(this.amount);
+          axios
+            .post("/api/donate", {
+              amount: this.amount,
+              paymentMethod: result,
+            })
+            .then((response) => {
+              alert("Toute l'équipe Lipton-IT vous remercie pour votre don!");
+              window.location.reload();
+            })
+            .catch((error) => {
+              alert("Une erreur est survenue :" + error);
+            });
       }
     },
   },
