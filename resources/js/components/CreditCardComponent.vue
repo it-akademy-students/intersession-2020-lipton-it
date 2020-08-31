@@ -8,6 +8,8 @@
             id="amount"
             class="StripeElement"
             name="amount"
+            type="number"
+            @input="restrictDecimal"
             placeholder="Combien souhaitez vous donner ?"
             required
             v-model="amount"
@@ -60,12 +62,17 @@ export default {
     cardElement: function () {
       console.log("cardELement()");
       const elements = this.stripe.elements();
-      var cardElement = elements.create("card");
+      let cardElement = elements.create("card", {
+        hidePostalCode: true,
+      });
       console.log("cardELement() end");
       return cardElement;
     },
   },
   methods: {
+    restrictDecimal() {
+      this.amount = this.amount.match(/^\d+\.?\d{0,2}/);
+    },
     stripeInit() {
       console.log("stripe init");
       console.log(this.amount);
@@ -74,39 +81,37 @@ export default {
       this.cardElement.mount("#card-element");
     },
     async donate(cardElement) {
-      var cardHolderName = this.cardHolderName;
-      var cardElement = this.cardElement;
-      var stripe = this.stripe;
+      let cardHolderName = this.cardHolderName;
+      let stripe = this.stripe;
       console.log(cardElement);
 
       const { paymentMethod, error } = await stripe.createPaymentMethod({
         type: "card",
-        card: cardElement,
-        billing_details: { name: cardHolderName.value },
+        card: this.cardElement,
+        billing_details: { name: cardHolderName },
       });
 
       if (error) {
         alert("Désolé, votre don n'a pas pu aboutir: " + error.message);
         return;
-      } else {
-        stripe.createToken(cardElement).then(function (result) {
-          var $
-        });
-        console.log(paymentMethod.id);
-          console.log(this.amount);
-          axios
-            .post("/api/donate", {
-              amount: this.amount,
-              paymentMethod: result,
-            })
-            .then((response) => {
-              alert("Toute l'équipe Lipton-IT vous remercie pour votre don!");
-              window.location.reload();
-            })
-            .catch((error) => {
-              alert("Une erreur est survenue :" + error);
-            });
       }
+      let token = stripe.createToken(cardElement);
+      console.log(paymentMethod);
+      console.log(this.amount * 100);
+      console.log(token);
+      axios
+        .post("/api/donate", {
+          amount: this.amount * 100,
+          // currency: 'eur',
+          paymentMethod: paymentMethod.id,
+        })
+        .then((response) => {
+          alert("Toute l'équipe Lipton-IT vous remercie pour votre don!");
+          window.location.reload();
+        })
+        .catch((error) => {
+          alert("Une erreur est survenue :" + error);
+        });
     },
   },
   mounted() {
