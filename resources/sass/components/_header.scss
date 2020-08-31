@@ -18,10 +18,24 @@
         text-transform: uppercase;
         padding: 0 25px;
         font-size: 1.2em;
+        position: relative;
 
         &:focus {
             border: none;
             outline: none;
+        }
+
+        &--active {
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                left: 15%;
+                right: 15%;
+                height: 1px;
+                background-color: white;
+                animation: scale-in-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            }
         }
     }
 }

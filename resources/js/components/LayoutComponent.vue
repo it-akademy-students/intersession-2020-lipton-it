@@ -56,7 +56,13 @@ export default {
     },
     methods: {
         // Triggered when `childToParent` event is emitted by the child.
+
         navClick(event) {
+            var x = document.querySelectorAll('.header__item');
+            x.forEach(element => {
+                element.classList.remove('header__item--active')
+            });
+            event.target.classList.add('header__item--active');
             const { value } = event.target;
             this.page = value;
         },
