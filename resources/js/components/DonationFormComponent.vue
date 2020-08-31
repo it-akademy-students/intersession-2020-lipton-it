@@ -12,10 +12,7 @@
     </div>
 
     <CreditCardComponent v-if="paiementCreditCard" />
-    <BankTransferComponent v-else />
-
-     <!-- <BankTransferComponent v-if="paiementCreditCard" />
-    <CreditCardComponent v-else /> -->
+    <PaypalComponent v-else />
   </div>
 </template>
  
@@ -24,12 +21,12 @@
 
 <script>
 import CreditCardComponent from "./CreditCardComponent";
-import BankTransferComponent from "./BankTransferComponent";
+import PaypalComponent from "./PaypalComponent";
 
 export default {
   components: {
     CreditCardComponent,
-    BankTransferComponent,
+    PaypalComponent,
   },
   data() {
     return {
