@@ -14,22 +14,22 @@
 </template>
 
 <script>
-    export default {
-        //  data() {
-        //     return {
-        //     childMessage: ''
-        //     }
-        // },
-        // methods: {
-        //     // Define the method that emits data to the parent as the first parameter to `$emit()`.
-        //     // This is referenced in the <template> call in the parent. The second parameter is the payload.
-        //     emitToParent (event) {
-        //     this.$emit('childToParent', this.childMessage)
-        //     }
-        // }
-        mounted() {
-            localStorage.page = 'explication'
-        },
-    };
+export default {
+    //  data() {
+    //     return {
+    //     childMessage: ''
+    //     }
+    // },
+    // methods: {
+    //     // Define the method that emits data to the parent as the first parameter to `$emit()`.
+    //     // This is referenced in the <template> call in the parent. The second parameter is the payload.
+    //     emitToParent (event) {
+    //     this.$emit('childToParent', this.childMessage)
+    //     }
+    // }
+    mounted() {
+        localStorage.page = 'explication'
+    },
+};
 </script>
 
