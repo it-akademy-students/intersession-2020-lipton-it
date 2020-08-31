@@ -1,11 +1,66 @@
 <template>
-    <div>
-        <h1  class="layout__title">Faites un don </h1>
-        <p   class="layout__description">Vous pouvez soutenir le projet et l’équipe de développeur en faisant un don via paypal  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum solor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet</p>
-    </div>
+  <div>
+    <h1 class="layout__title">Faites un don</h1>
+    <p
+      class="layout__description"
+    >Vous pouvez soutenir le projet et l’équipe de développeurs en faisant un don (Visa, Mastercard and American Express ). *</p>
+    <button @click="toggle=!toggle" value="donate" type="button" class="btn btn-danger">
+      "Donnez-moi"
+      <br />Enrico Macias, 2013
+    </button>
+    <DonationFormComponent v-if="toggle" />
+    <!-- <button v-on:click="(event) => this.$emit('childToParent', event)" value='explication' type="button" class="header__item">explication</button> -->
+    <p class="text-danger">* Seuls les dons en euros (€) sont acceptés.</p>
+  </div>
 </template>
 
 <script>
-    export default {
+import DonationFormComponent from "./DonationFormComponent";
+export default {
+  components: {
+    DonationFormComponent,
+  },
+  data() {
+    return {
+      toggle: false,
     };
+  },
+  methods: {
+    emitToParent(value) {
+      this.$emit("childToParent", value);
+    },
+    // Triggered when `childToParent` event is emitted by the child.
+    navClick(event) {
+      const { value } = event.target;
+      this.page = value;
+    },
+    childToParent(event) {
+      this.repo = event[0];
+      this.mail = event[1];
+    },
+  },
+};
 </script>
+
+
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+div * {
+  margin: 25px 0;
+}
+
+button {
+  width: 75%;
+  align-self: center;
+  font-size: 1em;
+  padding: 10px 0;
+}
+
+.text-danger {
+  text-align: end;
+}
+</style>
