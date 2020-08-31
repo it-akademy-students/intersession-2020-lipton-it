@@ -34,7 +34,6 @@
             CheckComponent
         },
         mounted() {
-            console.log("Component mounted.");
         },
         data () {
             return {
@@ -47,19 +46,13 @@
         methods: {
             // Triggered when `childToParent` event is emitted by the child.
             navClick (event) {
-                console.log(event.target.nav);
-                    const { value } = event.target;
-                    this.page = value;
+                const { value } = event.target;
+                this.page = value;
             },
             childToParent (event) {
-                    this.repo = event[0];
-                    this.mail = event[1];
+                this.repo = event[0];
+                this.mail = event[1];
             }
-            
         }
-
-
-
-
     };
 </script>

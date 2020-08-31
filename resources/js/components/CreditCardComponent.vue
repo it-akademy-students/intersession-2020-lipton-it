@@ -61,12 +61,10 @@ export default {
       return stripe;
     },
     cardElement: function () {
-      console.log("cardELement()");
       const elements = this.stripe.elements();
       let cardElement = elements.create("card", {
         hidePostalCode: true,
       });
-      console.log("cardELement() end");
       return cardElement;
     },
   },
@@ -75,16 +73,11 @@ export default {
       this.amount = this.amount.match(/^\d+\.?\d{0,2}/);
     },
     stripeInit() {
-      console.log("stripe init");
-      console.log(this.amount);
-      console.log(this.cardElement);
-
       this.cardElement.mount("#card-element");
     },
     async donate(cardElement) {
       let cardHolderName = this.cardHolderName;
       let stripe = this.stripe;
-      console.log(cardElement);
 
       const { paymentMethod, error } = await stripe.createPaymentMethod({
         type: "card",
@@ -97,9 +90,6 @@ export default {
         return;
       }
       let token = stripe.createToken(cardElement);
-      console.log(paymentMethod);
-      console.log(this.amount * 100);
-      console.log(token);
       axios
         .post("/api/donate", {
           amount: this.amount * 100,
@@ -115,8 +105,6 @@ export default {
     },
   },
   mounted() {
-    console.log("computed");
-    console.log(this.amount);
     this.stripeInit();
   },
 };
