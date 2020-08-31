@@ -49,9 +49,10 @@
 export default {
   data() {
     return {
-      amount: 10,
-      cardHolderName: "Olivier CHARON",
+      amount: 1010,
+      cardHolderName: "",
       publishableKey: process.env.MIX_STRIPE_KEY,
+      // publishableKey: process.env.MIX_STRIPE_PROD_KEY,
     };
   },
   computed: {
@@ -102,7 +103,6 @@ export default {
       axios
         .post("/api/donate", {
           amount: this.amount * 100,
-          // currency: 'eur',
           paymentMethod: paymentMethod.id,
         })
         .then((response) => {
