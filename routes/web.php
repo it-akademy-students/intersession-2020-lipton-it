@@ -25,8 +25,8 @@ Route::get('/confirmationMail', function () {
     return new ConfirmationMail();
 });
 Route::get('/resultsMail', function () {
-//        Mail::to('example@example.com')
-//        ->queue(new ResultsMail());
+        // Mail::to('example@example.com')
+        // ->queue(new ResultsMail());
 
     return new ResultsMail();
 });
