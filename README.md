@@ -13,7 +13,9 @@
 - `docker-compose build app`
 - `docker-compose up -d`
 - `docker-compose exec app composer install`
-- `docker-compose exec nodejs npm install`
+- `docker-compose exec nodejs npm install` or `npm install` if it doesn't work
+- `docker-compose exec app php artisan key:generate`
+- Write your stripe keys in the end of the .env file and your smtp credentials
 - `docker-compose exec nodejs npm run dev` or `docker run -it --rm -e "TERM=xterm-256color" -v $(pwd):/usr/src/app -w /usr/src/app node:lts-alpine npm run dev` if it doesn't work
 
 ### Mise en place sans Docker
