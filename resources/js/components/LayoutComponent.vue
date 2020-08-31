@@ -34,13 +34,21 @@
             CheckComponent
         },
         mounted() {
+            if (localStorage.page) {
+                this.page = localStorage.page;
+            } else {
+                this.page = "explication";
+            }
+            if (localStorage.mail) this.mail = localStorage.mail;
+            if (localStorage.repo) this.repo = localStorage.repo;
         },
         data () {
             return {
                 fromChild: '', // This value is set to the value emitted by the child
-                page: 'explication',
+                page: localStorage.page,
                 mail: '',
-                repo: ''
+                repo: '',
+                boolean: false
             }
         },
         methods: {
@@ -49,7 +57,7 @@
                 const { value } = event.target;
                 this.page = value;
             },
-            childToParent (event) {
+            mailClick(event) {
                 this.repo = event[0];
                 this.mail = event[1];
             }
