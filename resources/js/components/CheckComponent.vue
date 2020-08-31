@@ -3,10 +3,10 @@
         <h1  class="layout__title">Check repo</h1>
         <p   class="layout__description">Vous pouvez soutenir le projet et l’équipe de développeur en faisant un don via paypal</p>
 
-        <div class="column">
+        <form action="javascript: void(0)" class="column" method="POST">
             <div class="column form__input">
                 <label for="repo" class="form__label">Link repository :</label>
-                <input name="repo" type="text" placeholder="repo link" class="form__input-text" v-model="repositoryInput">
+                <input name="repo" type="url" placeholder="repo link" class="form__input-text" v-model="repositoryInput">
             </div>
 
             <div class="column form__input">
@@ -14,11 +14,8 @@
                 <input name="repo" type="email" placeholder="repo link" class="form__input-text" v-model="mailInput">
             </div>
 
-            <button type="button" name="button" v-on:click="emitToParent">Click!</button>
-
-            <!-- <label for="child-input">Child input: </label>
-            <input id="child-input" type="text" name="msg"  v-model="childMessage"> -->
-        </div>
+            <input class="form__submit" type="submit" name="button" value="Send" v-on:click="emitToParent">
+        </form>
 
     </div>
 </template>
@@ -27,15 +24,34 @@
     export default {
          data() {
             return {
-                repositoryInput: '',
-                mailInput: ''
+                repositoryInput: localStorage.repo,
+                mailInput: localStorage.mail
             }
+        },
+        mounted() {
+            localStorage.page = 'check'
         },
         methods: {
             // Define the method that emits data to the parent as the first parameter to $emit().
             // This is referenced in the <template> call in the parent. The second parameter is the payload.
-            emitToParent (event) {
-            this.$emit('childToParent', [this.repositoryInput, this.mailInput])
+            
+            emitToParent (event) {  
+                // localStorage.repo = this.repositoryInput;
+                // localStorage.mail = this.mailInput;
+
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                var pattern = new RegExp(   '^(https?:\\/\\/)?'+ // protocol
+                                            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                                            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                                            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                                            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                                            '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+
+                if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
+                    this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
+                } else {
+                    console.log('ca a foiré gros');
+                }
             }
         }
     };

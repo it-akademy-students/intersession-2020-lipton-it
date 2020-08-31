@@ -17,4 +17,18 @@
             outline: none;
         }
     }
+
+    &__submit {
+        background-color: $red;
+        border: 1px solid white;
+        color: white;
+        padding: 5px 35px;
+        width: fit-content;
+    }
+}
+
+@media only screen and (max-width: 605px) {
+   .form__input {
+       width: auto;
+   }
 }

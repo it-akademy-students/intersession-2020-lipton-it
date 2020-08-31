@@ -5,4 +5,4 @@ then
     rm -rf ./tmp/repo
 fi
 
-git clone --depth 1 https://github.com/$1 ./tmp/repo
+git clone --depth 1 $1 ./tmp/repo
