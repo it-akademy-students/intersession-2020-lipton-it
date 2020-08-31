@@ -29,9 +29,10 @@ class ResultsMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.results')
-                    ->attach('/path/to/file', [
-                        'as' => 'name.pdf',
-                        'mime' => 'application/pdf',
-                    ]);
+                    ->subject('Vos résultats sont là');
+//                    ->attach('/path/to/file', [
+//                        'as' => 'name.pdf',
+//                        'mime' => 'application/pdf',
+//                    ]);
     }
 }

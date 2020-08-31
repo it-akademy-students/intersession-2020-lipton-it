@@ -28,6 +28,7 @@ class ConfirmationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.confirmation');
+        return $this->markdown('emails.confirmation')
+                    ->subject('Votre demande a bien été prise en compte');
     }
 }

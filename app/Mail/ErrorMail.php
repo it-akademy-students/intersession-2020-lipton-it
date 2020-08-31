@@ -28,6 +28,7 @@ class ErrorMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.error');
+        return $this->markdown('emails.error')
+                    ->subject('Houston, we have a problem...');
     }
 }

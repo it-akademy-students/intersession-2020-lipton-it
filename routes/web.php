@@ -19,23 +19,20 @@ use App\Mail\ErrorMail;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/confirmationMail', function () {
-    Mail::to('example@example.com')
-//        ->queue()
-        ->send(new ConfirmationMail());
+//    Mail::to('example@example.com')
+//        ->queue(new ConfirmationMail());
 
     return new ConfirmationMail();
 });
 Route::get('/resultsMail', function () {
-        Mail::to('example@example.com')
-//        ->queue()
-        ->send(new ResultsMail());
+//        Mail::to('example@example.com')
+//        ->queue(new ResultsMail());
 
     return new ResultsMail();
 });
 Route::get('/errorMail', function () {
-        Mail::to('example@example.com')
-//        ->queue()
-        ->send(new ErrorMail());
+//        Mail::to('example@example.com')
+//        ->queue(new ErrorMail());
 
     return new ErrorMail();
 });
