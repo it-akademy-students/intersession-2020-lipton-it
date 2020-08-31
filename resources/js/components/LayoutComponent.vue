@@ -49,7 +49,7 @@ export default {
             mail: '',
             repo: '',
             boolean: false
-        }
+        };
     },
     methods: {
         // Triggered when `childToParent` event is emitted by the child.
