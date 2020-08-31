@@ -11,3 +11,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+@media only screen and (max-width: 605px) {
+    body {
+        background-image: url('../images//background-minify.png');
+        background-size: auto;
+        background-position: right bottom;
+    }
+}
