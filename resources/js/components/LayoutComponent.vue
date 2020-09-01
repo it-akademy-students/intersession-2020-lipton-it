@@ -10,7 +10,8 @@
         </div> -->
 
         <header-component v-on:childToParent="navClick" :prop3="repo"></header-component>
-        <div class="layout__content">
+        <div class="layout__content" :class="{ 'layout__notification--active' : notifMessage}">
+            <notification-component :message="notifMessage" :notifType="notifType"></notification-component>
             <explication-component v-if="page === 'explication'">
             </explication-component>
             <donation-component v-if="page === 'donation'">
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import NotificationComponent from "./NotificationComponent";
 import HeaderComponent from "./HeaderComponent";
 import ExplicationComponent from "./ExplicationComponent";
 import DonationComponent from "./DonationComponent";
@@ -30,6 +32,7 @@ import CheckComponent from "./CheckComponent";
 
 export default {
     components: {
+        NotificationComponent,
         HeaderComponent,
         ExplicationComponent,
         DonationComponent,
@@ -51,13 +54,15 @@ export default {
             page: localStorage.page,
             mail: "",
             repo: "",
-            boolean: false
+            boolean: false,
+            notifMessage: "",
+            notifType: false
         };
     },
     methods: {
         // Triggered when `childToParent` event is emitted by the child.
-
         navClick(event) {
+            this.notification(true, "message")
             var x = document.querySelectorAll('.header__item');
             x.forEach(element => {
                 element.classList.remove('header__item--active')
@@ -69,6 +74,17 @@ export default {
         mailClick(event) {
             this.repo = event[0];
             this.mail = event[1];
+        },
+        notification(type, message) {
+            document.querySelector('.layout__content').classList.remove('layout__notification--active')
+
+            this.notifMessage = message;
+            this.notifType = type;
+
+            setTimeout(function(){ 
+                document.querySelector('.layout__content').classList.add('layout__notification--active')
+            }, 0);
+            
         }
     }
 };

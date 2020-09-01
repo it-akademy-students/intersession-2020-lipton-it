@@ -35,10 +35,9 @@
             // Define the method that emits data to the parent as the first parameter to $emit().
             // This is referenced in the <template> call in the parent. The second parameter is the payload.
             
-            emitToParent (event) {  
+            emitToParent (event) {
                 // localStorage.repo = this.repositoryInput;
                 // localStorage.mail = this.mailInput;
-
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 var pattern = new RegExp(   '^(https?:\\/\\/)?'+ // protocol
                                             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
@@ -48,10 +47,15 @@
                                             '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
                 if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
-                    this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
+                    this.validation();
                 } else {
                     console.log('ca a foiré gros');
                 }
+            },
+
+            validation() {
+                console.log('coucou');
+                this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
             }
         }
     };
