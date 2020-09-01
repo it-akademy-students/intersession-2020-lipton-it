@@ -26,18 +26,18 @@ export default {
     };
   },
   methods: {
-    emitToParent(value) {
-      this.$emit("childToParent", value);
-    },
-    // Triggered when `childToParent` event is emitted by the child.
-    navClick(event) {
-      const { value } = event.target;
-      this.page = value;
-    },
-    childToParent(event) {
-      this.repo = event[0];
-      this.mail = event[1];
-    },
+    // emitToParent(value) {
+    //   this.$emit("childToParent", value);
+    // },
+    // // Triggered when `childToParent` event is emitted by the child.
+    // navClick(event) {
+    //   const { value } = event.target;
+    //   this.page = value;
+    // },
+    // childToParent(event) {
+    //   this.repo = event[0];
+    //   this.mail = event[1];
+    // },
   },
 };
 </script>

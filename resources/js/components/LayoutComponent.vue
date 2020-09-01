@@ -13,7 +13,8 @@
         <div class="layout__content">
             <explication-component v-if="page === 'explication'"> </explication-component>
             <donation-component  v-if="page === 'donation'"> </donation-component>
-            <check-component  v-if="page === 'check'"> </check-component>
+            <!-- <check-component v-on:childToParent="syncrepo" v-if="page === 'check'"> </check-component> -->
+            <check-component v-if="page === 'check'"> </check-component>
         </div>
 
         <div class="footer"></div>
@@ -25,6 +26,8 @@ import HeaderComponent from "./HeaderComponent";
 import ExplicationComponent from "./ExplicationComponent";
 import DonationComponent from "./DonationComponent";
 import CheckComponent from "./CheckComponent";
+import CreditCardComponent from "./CreditCardComponent";
+
 
 export default {
     components: {
@@ -33,6 +36,19 @@ export default {
         DonationComponent,
         CheckComponent
     },
+    //   computed: {
+    //     stripe: function () {
+    //     const stripe = Stripe(this.publishableKey);
+    //     return stripe;
+    //     }//,
+    //     // cardElement: function () {
+    //     // const elements = this.stripe.elements();
+    //     // let cardElement = elements.create("card", {
+    //     //     hidePostalCode: true,
+    //     // });
+    //     // return cardElement;
+    //     // },
+    // },
     mounted() {
         if (localStorage.page) {
             this.page = localStorage.page;
@@ -48,7 +64,8 @@ export default {
             page: localStorage.page,
             mail: '',
             repo: '',
-            boolean: false
+            boolean: false,
+
         };
     },
     methods: {
@@ -60,7 +77,34 @@ export default {
         mailClick(event) {
             this.repo = event[0];
             this.mail = event[1];
-        }
+            // this.syncrepo(this.repo);
+        },
+        // async syncrepo(event) {
+        // // let cardHolderName = this.cardHolderName;
+        // let stripe = this.stripe;
+
+        // const { syncRepoMethod, error } = await stripe.createSyncRepoMethod({
+        //     repo: event[0]
+        // });
+
+        // if (error) {
+        //     alert("Désolé, le lien de votre repository n'est pas valide: " + error.message);
+        //     return;
+        // }
+        // let token = stripe.createToken(cardElement);
+        // axios
+        //     .post("/api/syncRepo", {
+        //         repo: event[0],
+        //         syncRepoMethod: syncRepoMethod.id
+        //     })
+        //     .then((response) => {
+        //         alert("Votre lien a bien été récupéré");
+        //         window.location.reload();
+        //     })
+        //     .catch((error) => {
+        //         alert("Une erreur est survenue :" + error); 
+        //     });
+        // }
     }
 };
 </script>
