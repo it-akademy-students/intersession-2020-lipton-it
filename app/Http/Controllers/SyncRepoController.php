@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use App\Mail\ConfirmationMail;
+use App\Mail\ResultsMail;
+use App\Mail\ErrorMail;
 
 class SyncRepoController extends Controller
 {
@@ -14,12 +18,12 @@ class SyncRepoController extends Controller
             'repo' => ['required'],
             'mail' => ['required'],
         ]);
-            
+
         $pathRepo = base_path() . "/tmp/repo";
         $pathLog = base_path() . "/tmp/log";
-        $pathEcs = base_path() . "/tmp/log/ecs_result.md";
-        // $pathPhpcs = base_path() ."/tmp/log/phpcs_result.md";
-        $pathProgpilot = base_path() . "/tmp/log/progpilot_result.md";
+        $pathEcs = base_path() . "/tmp/log/ecs_result.txt";
+        // $pathPhpcs = base_path() ."/tmp/log/phpcs_result.txt";
+        $pathProgpilot = base_path() . "/tmp/log/progpilot_result.txt";
         $pathVendor = base_path() . "/vendor/bin/";
         $pathVPhpcs = base_path() . "/vendor/squizlabs/php_codesniffer/bin/phpcs";
         $dirSize = "du -b " . $pathRepo . " | awk '{print $1}'";
@@ -38,7 +42,7 @@ class SyncRepoController extends Controller
 
         function getDirContents($dir, &$results = array()) {
             $files = scandir($dir);
-        
+
             foreach ($files as $key => $value) {
                 $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
                 if (!is_dir($path)) {
@@ -52,13 +56,13 @@ class SyncRepoController extends Controller
                     }
                 }
             }
-        
+
             return $results;
         }
         $allPath = getDirContents('/var/www/tmp/repo');
         var_dump( $allPath);
 
-        foreach($allPath as $file){ 
+        foreach($allPath as $file){
             if(!strstr($file, ".php")) {
                 unlink($file);
             }
@@ -79,32 +83,26 @@ class SyncRepoController extends Controller
         if($dirSize >= 100000000 ) {
             exec("rm -rf " . $pathRepo);
             exec("rm -rf .." . $pathRepo);
+            Mail::to(request('mail'))->queue(new ErrorMail());
             return ('Le dossier est trop gros');
         }
-        
-        // dd(realpath($pathVendor) . "progpilot " . realpath($pathRepo) . " &> " .  realpath($pathProgpilot));
-        // exec(realpath($pathVendor) . "progpilot " . realpath($pathRepo) . " >> " .  realpath($pathProgpilot));
-        exec($pathVendor . "progpilot " . $pathRepo . " >> " .  $pathProgpilot);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set array >>" . $pathEcs);
 
-        exec($pathVendor . "ecs check " . $pathRepo . " --set clean-code >> " .$pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set comments >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set common >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set control-structures >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set dead-code >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set docblock >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set namespaces >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set php70 >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set php71 >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set psr12 >> " . $pathEcs);
-        exec($pathVendor . "ecs check " . $pathRepo . " --set spaces >> " . $pathEcs);
-        /*
-        // $options = ['clean-code', 'comments', 'common', 'control-structures', 'dead-code', 'docblock', 'namespaces', 'php70', 'php71', 'psr12', 'spaces'];
-        // foreach($options as $option){
-        //     exec($pathVendor . "ecs check " . $pathRepo . " --set ". $option . " &>> " . $pathEcs);
-        // }
-*/
-        // exec($pathVPhpcs . "ecs check " . $pathRepo . " --set spaces >> " . $pathPhpcs);
-        // exec($pathVPhpcs . " --standard==PSR12 " . $pathRepo . " >> " . $pathPhpcs);
+        Mail::to(request('mail'))->queue(new ConfirmationMail());
+
+        exec($pathVendor . "progpilot " . $pathRepo . " >> " .  $pathProgpilot);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set array >>" . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set clean-code >> " .$pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set comments >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set common >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set control-structures >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set dead-code >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set docblock >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set namespaces >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set php70 >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set php71 >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set psr12 >> " . $pathEcs);
+//        exec($pathVendor . "ecs check " . $pathRepo . " --set spaces >> " . $pathEcs);
+
+        Mail::to(request('mail'))->queue(new ResultsMail());
     }
 }
