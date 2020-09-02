@@ -24,12 +24,21 @@
     export default {
          data() {
             return {
-                repositoryInput: localStorage.repo,
-                mailInput: localStorage.mail
+                // repositoryInput: localStorage.repo,
+                // mailInput: localStorage.mail,  
+                repositoryInput : 'https://github.com/methbkts/cheesy-dex',
+                mailInput : 'a@a.com',
+                publishableKey: process.env.MIX_STRIPE_KEY,
             }
         },
         mounted() {
             localStorage.page = 'check'
+        },
+        computed: {
+            stripe: function () {
+            const stripe = Stripe(this.publishableKey);
+            return stripe;
+            }
         },
         methods: {
             // Define the method that emits data to the parent as the first parameter to $emit().
@@ -49,9 +58,38 @@
 
                 if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
                     this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
+                    this.syncrepo()
                 } else {
                     console.log('ca a foiré gros');
                 }
+            },
+            async syncrepo() {
+            let cardHolderName = this.cardHolderName;
+            // let stripe = this.stripe;
+
+            // const { syncRepoMethod, error } = await stripe.createSyncRepoMethod({
+            //     repo: event[0]
+            // });
+
+            // if (error) {
+            //     alert("Désolé, le lien de votre repository n'est pas valide: " + error.message);
+            //     return;
+            // }
+            // let token = stripe.createToken(cardElement);
+            axios
+                .post("/api/syncRepo", {
+                    repo: this.repositoryInput,
+                    mail: this.mailInput
+                    // syncRepoMethod: syncRepoMethod.id
+                })
+                .then((response) => {
+                    // alert("Votre lien a bien été récupéré");
+                    // window.location.reload();
+                    console.log(response);
+                })
+                .catch((error) => {
+                    alert("Une erreur est survenue :" + error); 
+                });
             }
         }
     };
