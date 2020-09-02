@@ -17,6 +17,11 @@ class SyncRepoController extends Controller
             
         $pathRepo = base_path() . "/tmp/repo";
         $pathLog = base_path() . "/tmp/log";
+        $pathEcs = base_path() . "/tmp/log/ecs_result.md";
+        $pathPhpcs = base_path() ."/tmp/log/phpcs_result.md";
+        $pathProgpilot = base_path() . "/tmp/log/progpilot_result.md";
+        $pathVendor = base_path() . "vendor/bin/";
+        $pathVPhpcs = base_path() . "vendor/squizlabs/php_codesniffer/bin/phpcs";
         $dirSize = `du -b ` . $pathRepo . ` | awk '{print $1}'`;
 
         // dd($pathRepo);
@@ -54,7 +59,23 @@ class SyncRepoController extends Controller
 
         exec("find . -type f -path '*tmp/repo*' -not -name '*.php' -delete");
         exec("find -type f -path '*tmp*/repo*' -name 'adminer.php' -delete");
-
-        
+        exec($pathVendor . "progpilot " . $pathRepo . " &> " .  $pathProgpilot);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set array &>" . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set clean-code &>> " .$pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set comments &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set common &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set control-structures &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set dead-code &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set docblock &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set namespaces &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set php70 &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set php71 &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set psr12 &>> " . $pathEcs);
+        // exec($pathVendor . "ecs check " . $pathRepo . " --set spaces &>> " . $pathEcs);
+        $options = ['clean-code', 'comments', 'common', 'control-structures', 'dead-code', 'docblock', 'namespaces', 'php70', 'php71', 'psr12', 'spaces'];
+        foreach($options as $option){
+            exec($pathVendor . "ecs check " . $pathRepo . " --set ". $option . " &>> " . $pathEcs);
+        }
+        exec($pathVPhpcs . "ecs check " . $pathRepo . " --set spaces &>> " . $pathPhpcs);
     }
 }
