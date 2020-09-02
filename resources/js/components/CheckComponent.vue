@@ -13,8 +13,12 @@
                 <label for="repo" class="form__label">Mail :</label>
                 <input name="repo" type="email" placeholder="repo link" class="form__input-text" v-model="mailInput">
             </div>
-
-            <input class="form__submit" type="submit" name="button" value="Send" v-on:click="emitToParent">
+            <div class="form__validation">
+                <div class="form__message-validation">
+                    <p> si vous valider ce message, vous accepter que votre mail sois sauvegarder dans nos cookies, envoyer quand même ?</p>
+                </div>
+                <input class="form__submit" type="submit" name="button" value="Send" v-on:click="emitToParent">
+            </div>
         </form>
 
     </div>
@@ -49,13 +53,20 @@
                 if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
                     this.validation();
                 } else {
-                    console.log('ca a foiré gros');
+                    this.validation();
+                    // this.$parent.notification(false, "error")
+
                 }
             },
 
             validation() {
-                console.log('coucou');
-                this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
+                if (document.querySelector('.form__message-validation').classList.contains('scale-in-hor-left')) {
+                    this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
+                    document.querySelector('.form__message-validation').classList.remove('scale-in-hor-left')
+                    // this.$parent.notification(true, "message")
+                } else {
+                    document.querySelector('.form__message-validation').classList.add('scale-in-hor-left')
+                }
             }
         }
     };
