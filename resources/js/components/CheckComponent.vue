@@ -83,7 +83,7 @@
                     // syncRepoMethod: syncRepoMethod.id
                 })
                 .then((response) => {
-                    alert("Votre lien a bien été récupéré");
+                    // alert("Votre lien a bien été récupéré");
                     // window.location.reload();
                     console.log(response);
                 })
