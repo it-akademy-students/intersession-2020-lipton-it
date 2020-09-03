@@ -1,7 +1,7 @@
 <template>
   <div>
     <form method="post" id="payment-form">
-      <div class="form-row inline">
+      <div class="form-row inline form--margin-top">
         <div class="col-4 d-flex flex-column">
           <label for="amount">Montant</label>
           <input
@@ -86,7 +86,7 @@ export default {
       });
 
       if (error) {
-        alert("Désolé, votre don n'a pas pu aboutir: " + error.message);
+        this.$parent.$parent.$parent.notification(false, "Désolé, votre don n'a pas pu aboutir: veuillez verifier vos champs")
         return;
       }
       let token = stripe.createToken(cardElement);
@@ -96,8 +96,8 @@ export default {
           paymentMethod: paymentMethod.id,
         })
         .then((response) => {
-          alert("Toute l'équipe Lipton-IT vous remercie pour votre don!");
-          window.location.reload();
+          this.$parent.$parent.toggle = false
+          this.$parent.$parent.$parent.notification(true, "Toute l'équipe Lipton-IT vous remercie pour votre don!")
         })
         .catch((error) => {
           alert("Une erreur est survenue :" + error);

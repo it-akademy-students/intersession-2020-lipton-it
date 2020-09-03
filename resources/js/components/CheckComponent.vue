@@ -76,7 +76,7 @@
                     document.querySelector('.form__message-validation').classList.remove('scale-in-hor-left')
                     this.$parent.notification(true, "message")
                 } else {
-                    this.$parent.notification(false, "message 2")
+                    // this.$parent.notification(false, "message 2")
                     document.querySelector('.form__message-validation').classList.add('scale-in-hor-left')
                 }
             },
