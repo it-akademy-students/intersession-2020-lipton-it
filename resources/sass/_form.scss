@@ -20,6 +20,27 @@
 
     &__stripe {
        margin-bottom: 20px; 
+    &__validation {
+        display: flex;
+        max-width: 550px;
+    }
+
+    &__message-validation {
+        visibility: hidden;
+        width: 0%;
+        height: 65px;
+        background-color: rgba(128, 128, 128, 0.747);
+        color: white;
+        overflow-y: visible;
+        overflow-x: hidden;
+        text-overflow: clip;
+        transition: 0.3s;
+
+        p {
+            font-size: 12px;
+            margin: 0;
+            width: 430px;
+        }
     }
 
     &__validation {

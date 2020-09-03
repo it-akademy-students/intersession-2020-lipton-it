@@ -63,9 +63,9 @@
                 if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
                     // this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
                     this.syncrepo()
-                    this.validation();
+                    // this.validation();
                 } else {
-                    this.validation();
+                    // this.validation();
                     // this.$parent.notification(false, "error")
                 }
             },
@@ -74,9 +74,8 @@
                 if (document.querySelector('.form__message-validation').classList.contains('scale-in-hor-left')) {
                     this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
                     document.querySelector('.form__message-validation').classList.remove('scale-in-hor-left')
-                    this.$parent.notification(true, "message")
+                    // this.$parent.notification(true, "message")
                 } else {
-                    // this.$parent.notification(false, "message 2")
                     document.querySelector('.form__message-validation').classList.add('scale-in-hor-left')
                 }
             },
