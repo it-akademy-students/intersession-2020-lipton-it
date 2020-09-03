@@ -5,13 +5,13 @@
 
         <form action="javascript: void(0)" class="column" method="POST">
             <div class="column form__input">
-                <label for="repo" class="form__label">Link repository :</label>
-                <input name="repo" type="url" placeholder="repo link" class="form__input-text" v-model="repositoryInput">
+                <label for="repo" class="form__label">Lien de votre repo :</label>
+                <input name="repo" type="url" placeholder="https://github.com/nom/projet" class="form__input-text" v-model="repositoryInput">
             </div>
 
             <div class="column form__input">
                 <label for="repo" class="form__label">Mail :</label>
-                <input name="repo" type="email" placeholder="repo link" class="form__input-text" v-model="mailInput">
+                <input name="repo" type="email" placeholder="bobby@shinoni.com" class="form__input-text" v-model="mailInput">
             </div>
             <div class="form__validation">
                 <div class="form__message-validation">
@@ -62,19 +62,18 @@
 
                 if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
                     // this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
-                    this.syncrepo()
-                    // this.validation();
-                } else {
-                    // this.validation();
-                    // this.$parent.notification(false, "error")
-                }
+                    this.validation();
+                } 
             },
 
             validation() {
                 if (document.querySelector('.form__message-validation').classList.contains('scale-in-hor-left')) {
                     this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
                     document.querySelector('.form__message-validation').classList.remove('scale-in-hor-left')
-                    // this.$parent.notification(true, "message")
+
+                    this.syncrepo()
+                    this.$parent.notification(true, "en cours de traitement")
+
                 } else {
                     document.querySelector('.form__message-validation').classList.add('scale-in-hor-left')
                 }

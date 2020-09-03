@@ -34,8 +34,8 @@ export default {
         } else {
             this.page = "explication";
         }
-        if (localStorage.mail) this.mail = localStorage.mail;
-        if (localStorage.repo) this.repo = localStorage.repo;
+        // if (localStorage.mail) this.mail = localStorage.mail;
+        // if (localStorage.repo) this.repo = localStorage.repo;
     },
 
     data() {
@@ -46,7 +46,7 @@ export default {
             repo: "",
             boolean: false,
             notifMessage: "",
-            notifType: false
+            notifType: "",
         };
     },
     methods: {
