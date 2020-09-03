@@ -6,7 +6,7 @@
 </style>
 # Votre demande a bien été prise en compte
 
-<p style="text-align:center;"><img src="{{ asset('images/lipton-it.png') }}"></p>
+<p style="text-align:center;"><img src="{{ asset('images/lipton-it.png') }}" height="250"></p>
 
 Bonjour,
 
