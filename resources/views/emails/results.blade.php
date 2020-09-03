@@ -7,9 +7,7 @@
 
 # Vos résultats sont là
 
-{{--{{ dump($this) }}--}}
-
-<p style="text-align:center;"><img src="{{ asset('images/logo-red.png') }}"></p>
+<p style="text-align:center;"><img src="{{ asset('images/lipton-it.png') }}"></p>
 
 Hey !
 
