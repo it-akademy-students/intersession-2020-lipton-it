@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\ConfirmationMail;
+use App\Mail\ResultsMail;
+use App\Mail\ErrorMail;
 
 /*
 |--------------------------------------------------------------------------
