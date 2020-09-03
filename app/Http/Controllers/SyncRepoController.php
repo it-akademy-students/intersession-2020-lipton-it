@@ -22,16 +22,15 @@ class SyncRepoController extends Controller
         $pathRepo = base_path() . "/tmp/repo";
         $pathLog = base_path() . "/tmp/log";
         $pathEcs = base_path() . "/tmp/log/ecs_result.txt";
-        // $pathPhpcs = base_path() ."/tmp/log/phpcs_result.txt";
+//         $pathPhpcs = base_path() ."/tmp/log/phpcs_result.txt";
         $pathProgpilot = base_path() . "/tmp/log/progpilot_result.txt";
         $pathVendor = base_path() . "/vendor/bin/";
-        $pathVPhpcs = base_path() . "/vendor/squizlabs/php_codesniffer/bin/phpcs";
+//        $pathPhpcs = base_path() . "/vendor/squizlabs/php_codesniffer/bin/phpcs";
         $dirSize = "du -b " . $pathRepo . " | awk '{print $1}'";
 
         if(file_exists($pathRepo)) {
             exec("rm -rf " . $pathRepo);
-            exec("rm -rf .." . $pathRepo);
-
+//            exec("rm -rf .." . $pathRepo);
         }
 
         exec('git clone --depth 1 ' . request('repo') . " " . $pathRepo);
@@ -52,22 +51,19 @@ class SyncRepoController extends Controller
                     if(is_dir($path)) {
                     }else {
                         $results[] = $path;
-
                     }
                 }
             }
-
             return $results;
         }
         $allPath = getDirContents('/var/www/tmp/repo');
-        var_dump( $allPath);
+//        var_dump($allPath);
 
         foreach($allPath as $file){
             if(!strstr($file, ".php")) {
                 unlink($file);
             }
         }
-
 
         if(file_exists($pathLog)) {
             exec("rm -rf " . $pathLog);
@@ -81,8 +77,8 @@ class SyncRepoController extends Controller
 
 
         if($dirSize >= 100000000 ) {
-            exec("rm -rf " . $pathRepo);
-            exec("rm -rf .." . $pathRepo);
+//            exec("rm -rf " . $pathRepo);
+//            exec("rm -rf .." . $pathRepo);
             Mail::to(request('mail'))->queue(new ErrorMail());
             return ('Le dossier est trop gros');
         }
@@ -90,18 +86,18 @@ class SyncRepoController extends Controller
         Mail::to(request('mail'))->queue(new ConfirmationMail());
 
         exec($pathVendor . "progpilot " . $pathRepo . " >> " .  $pathProgpilot);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set array >>" . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set clean-code >> " .$pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set comments >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set common >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set control-structures >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set dead-code >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set docblock >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set namespaces >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set php70 >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set php71 >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set psr12 >> " . $pathEcs);
-//        exec($pathVendor . "ecs check " . $pathRepo . " --set spaces >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set array >>" . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set clean-code >> " .$pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set comments >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set common >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set control-structures >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set dead-code >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set docblock >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set namespaces >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set php70 >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set php71 >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set psr12 >> " . $pathEcs);
+        exec($pathVendor . "ecs check " . $pathRepo . " --set spaces >> " . $pathEcs);
 
         Mail::to(request('mail'))->queue(new ResultsMail());
     }

@@ -28,18 +28,15 @@ class ResultsMail extends Mailable
      */
     public function build()
     {
-        $path_progpilot_result = '../tmp/log/progpilot_result.md';
-        $path_ecs_result = '../tmp/log/ecs_result.md';
-        $path_phpcs_result = '../tmp/log/phpcs_result.md';
+        $path_progpilot_result = base_path() . '/tmp/log/progpilot_result.txt';
+        $path_ecs_result = base_path() . '/tmp/log/ecs_result.txt';
 
-        if(file_exists($path_phpcs_result) &&
-            file_exists($path_ecs_result) &&
-            file_exists($path_progpilot_result)){
+        if(file_exists($path_ecs_result) &&
+        file_exists($path_progpilot_result)){
             return $this->markdown('emails.results')
             ->subject('Vos résultats sont là')
             ->attach($path_progpilot_result)
-            ->attach($path_ecs_result)
-            ->attach($path_phpcs_result);
+            ->attach($path_ecs_result);
         } else {
             return $this->markdown('emails.errMail')
             ->subject('Une erreur est survenue');
