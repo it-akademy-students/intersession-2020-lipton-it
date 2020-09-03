@@ -6,7 +6,7 @@
           <label for="amount">Montant</label>
           <input
             id="amount"
-            class="StripeElement"
+            class="StripeElement form__stripe"
             name="amount"
             type="number"
             @input="restrictDecimal"
@@ -18,7 +18,7 @@
         <div class="col-8 d-flex flex-column">
           <label for="card-holder-name">Nom inscrit sur la carte</label>
           <input
-            class="StripeElement"
+            class="StripeElement form__stripe"
             name="card-holder-name"
             id="card-holder-name"
             type="text"
@@ -31,7 +31,7 @@
       <div class="form-row inline">
         <div class="col d-flex flex-column">
           <label for="card-element">Carte de crédit</label>
-          <div id="card-element">
+          <div id="card-element" class="form__stripe">
             <!-- A Stripe Element will be inserted here. -->
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div id="card-errors" role="alert"></div>
       </div>
 
-      <button id="card-button" class="btn btn-success" @click.prevent="donate(cardElement)">Donner</button>
+      <button id="card-button" class="form__submit" @click.prevent="donate(cardElement)">Donner</button>
     </form>
   </div>
 </template>

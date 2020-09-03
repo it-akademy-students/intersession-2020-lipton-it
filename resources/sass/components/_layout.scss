@@ -7,14 +7,12 @@
         right: 0;
         width: calc(100vw - 650px);
         min-width: 650px;
-        padding: 0 50px;
-        top: 35px ;
+        padding: 50px;
+        background-color: rgba(255, 255, 255, 0.486)
+    }
 
-        // @mixin sm {
-        //     @media (min-width: #{$breakpoint-s}) {
-        //         background-color: red;
-        //     }
-        // }
+    &__description {
+        margin: 20px 0;
     }
 
     &__title {

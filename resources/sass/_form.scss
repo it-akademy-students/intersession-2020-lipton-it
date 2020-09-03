@@ -18,6 +18,8 @@
         }
     }
 
+    &__stripe {
+       margin-bottom: 20px; 
     &__validation {
         display: flex;
         max-width: 550px;
@@ -39,7 +41,6 @@
             margin: 0;
             width: 430px;
         }
-
     }
 
     &__submit {
@@ -49,6 +50,7 @@
         // border: none;
         padding: 5px 35px;
         width: fit-content;
+        margin-bottom: 20px;
 
         &:focus {
             outline: none;

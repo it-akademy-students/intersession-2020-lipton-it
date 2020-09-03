@@ -1,15 +1,9 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-5 text-center">
-          <button
-            @click="paiementCreditCard=!paiementCreditCard"
-            class="btn btn-secondary"
-          >Payer {{paiementCreditCard?'par virement':'par carte'}}</button>
-        </div>
-      </div>
-    </div>
+      <button
+        @click="paiementCreditCard=!paiementCreditCard"
+        class="form__submit"
+      >Payer {{paiementCreditCard?'par virement':'par carte'}}</button>
 
     <CreditCardComponent v-if="paiementCreditCard" />
     <PaypalComponent v-else />
