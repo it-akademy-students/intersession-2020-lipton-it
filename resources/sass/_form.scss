@@ -18,12 +18,21 @@
         }
     }
 
+    &__stripe {
+       margin-bottom: 20px; 
+    }
+
     &__submit {
         background-color: $red;
         border: 1px solid white;
         color: white;
         padding: 5px 35px;
         width: fit-content;
+        margin-bottom: 20px;
+
+        &:focus {
+            outline: none;
+        }
     }
 }
 
