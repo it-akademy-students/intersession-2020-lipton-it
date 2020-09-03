@@ -24,10 +24,10 @@
     export default {
          data() {
             return {
-                // repositoryInput: localStorage.repo,
-                // mailInput: localStorage.mail,  
-                repositoryInput : 'https://github.com/methbkts/cheesy-dex',
-                mailInput : 'a@a.com',
+                repositoryInput: localStorage.repo,
+                mailInput: localStorage.mail,
+                // repositoryInput : 'https://github.com/methbkts/cheesy-dex',
+                // mailInput : 'a@a.com',
                 publishableKey: process.env.MIX_STRIPE_KEY,
             }
         },
@@ -43,10 +43,10 @@
         methods: {
             // Define the method that emits data to the parent as the first parameter to $emit().
             // This is referenced in the <template> call in the parent. The second parameter is the payload.
-            
-            emitToParent (event) {  
-                // localStorage.repo = this.repositoryInput;
-                // localStorage.mail = this.mailInput;
+
+            emitToParent (event) {
+                localStorage.repo = this.repositoryInput;
+                localStorage.mail = this.mailInput;
 
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 var pattern = new RegExp(   '^(https?:\\/\\/)?'+ // protocol
@@ -57,7 +57,7 @@
                                             '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
                 if(re.test(this.mailInput) && pattern.test(this.repositoryInput)){
-                    this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
+                    // this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
                     this.syncrepo()
                 } else {
                     console.log('ca a foiré gros');
@@ -88,7 +88,7 @@
                     console.log(response);
                 })
                 .catch((error) => {
-                    alert("Une erreur est survenue :" + error); 
+                    // alert("Une erreur est survenue :" + error);
                 });
             }
         }
