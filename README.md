@@ -33,20 +33,22 @@ Voir [SUJET](SUJET.md)
 
 - `docker-compose build app`
 - `docker-compose up -d`
-- `docker-compose exec app composer install`
-- `docker-compose exec nodejs npm install` or `npm install` if it doesn't work
+- `cp .env.example .env`
 - `docker-compose exec app php artisan key:generate`
 - Ajoutez les clés Stripe et les clés du serveur SMTP dans le fichier `.env`
+- `docker-compose exec app composer install`
+- `docker-compose exec nodejs npm install` or `npm install` if it doesn't work
 - `docker-compose exec nodejs npm run dev` or `docker run -it --rm -e "TERM=xterm-256color" -v $(pwd):/usr/src/app -w /usr/src/app node:lts-alpine npm run dev` if it doesn't work
 
 ### Mise en place sans Docker
 
 - `git clone https://github.com/it-akademy-students/intersession-2020-lipton-it.git`
 - `cd intersession-2020-lipton-it`
-- `composer install`
-- `npm install`
+- `cp .env.example .env`
 - `php artisan key:generate`
 - Ajoutez les clés Stripe et les clés du serveur SMTP dans le fichier `.env`
+- `composer install`
+- `npm install`
 - `npm run dev`
 
 <p align="center"><img src="resources/images/jjba.gif" height="320"></p>
