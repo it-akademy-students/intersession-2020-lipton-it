@@ -1,6 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\ConfirmationMail;
+use App\Mail\ResultsMail;
+use App\Mail\ErrorMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+
+Auth::routes(['register' => false]);
+Route::get('/admin', 'AdminController@index')->name('admin');
