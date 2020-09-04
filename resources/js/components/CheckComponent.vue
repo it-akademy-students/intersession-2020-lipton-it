@@ -52,7 +52,6 @@
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
                 if(re.test(this.mailInput)){
-                    // this.$emit('childToParent', [this.repositoryInput, this.mailInput]);
                     this.validation();
                 }
             },
@@ -80,30 +79,15 @@
             },
             async syncrepo() {
             let cardHolderName = this.cardHolderName;
-            // let stripe = this.stripe;
-
-            // const { syncRepoMethod, error } = await stripe.createSyncRepoMethod({
-            //     repo: event[0]
-            // });
-
-            // if (error) {
-            //     alert("Désolé, le lien de votre repository n'est pas valide: " + error.message);
-            //     return;
-            // }
-            // let token = stripe.createToken(cardElement);
             axios
                 .post("/api/syncRepo", {
                     repo: this.repositoryInput,
                     mail: this.mailInput
-                    // syncRepoMethod: syncRepoMethod.id
                 })
                 .then((response) => {
-                    // alert("Votre lien a bien été récupéré");
-                    // window.location.reload();
                     console.log(response);
                 })
                 .catch((error) => {
-                    // alert("Une erreur est survenue :" + error);
                 });
             }
         }
