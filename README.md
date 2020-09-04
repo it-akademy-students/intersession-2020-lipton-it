@@ -1,10 +1,31 @@
-# Intersession 2020 - Groupe Lipton IT
-
-<p align="center"><img src="resources/images/banner.png" height="320"></p>
+<h1 align="center">
+  <a href="https://github.com/it-akademy-students/intersession-2020-lipton-it"><img src="resources/images/banner.png" alt="Lipton-IT" height="320"></a>
+  <br>
+  Lipton-IT
+</h1>
+<h4 align="center">The code inspector for PHP.</h2>
 
 <p align="center">
-<a href="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master"><img src="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master" alt="Build Status"></a>
+  <a href="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master"><img src="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master" alt="Build Status"></a><br>
+  <a href="SUJET.md">Sujet</a> | <a href="#outils-utilisés">Outils utilisés</a> | <a href="#mise-en-place-du-projet">Mise en place du projet</a> | <a href="LICENSE.md">License</a>
 </p>
+
+## Sujet
+
+Voir [SUJET](SUJET.md)
+
+## Outils utilisés
+
+- PHP,
+- Laravel,
+- Vuejs,
+- ECS,
+- Progpilot,
+- Stripe,
+- PayPal,
+- Mailtrap,
+- Docker,
+- Figma.
 
 ## Mise en place du projet
 
@@ -15,11 +36,17 @@
 - `docker-compose exec app composer install`
 - `docker-compose exec nodejs npm install` or `npm install` if it doesn't work
 - `docker-compose exec app php artisan key:generate`
-- Write your stripe keys in the end of the .env file and your smtp credentials
+- Ajoutez les clés Stripe et les clés du serveur SMTP dans le fichier `.env`
 - `docker-compose exec nodejs npm run dev` or `docker run -it --rm -e "TERM=xterm-256color" -v $(pwd):/usr/src/app -w /usr/src/app node:lts-alpine npm run dev` if it doesn't work
 
 ### Mise en place sans Docker
 
+- `git clone https://github.com/it-akademy-students/intersession-2020-lipton-it.git`
+- `cd intersession-2020-lipton-it`
 - `composer install`
 - `npm install`
+- `php artisan key:generate`
+- Ajoutez les clés Stripe et les clés du serveur SMTP dans le fichier `.env`
 - `npm run dev`
+
+<p align="center"><img src="resources/images/jjba.gif" height="320"></p>
