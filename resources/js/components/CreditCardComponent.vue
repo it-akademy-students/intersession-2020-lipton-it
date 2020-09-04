@@ -52,7 +52,6 @@ export default {
       amount: 1010,
       cardHolderName: "",
       publishableKey: process.env.MIX_STRIPE_KEY,
-      // publishableKey: process.env.MIX_STRIPE_PROD_KEY,
     };
   },
   computed: {
@@ -86,7 +85,7 @@ export default {
       });
 
       if (error) {
-        this.$parent.$parent.$parent.notification(false, "Désolé, votre don n'a pas pu aboutir: veuillez verifier vos champs")
+        this.$parent.$parent.$parent.notification(false, "Désolé, votre don n'a pas pu aboutir: Veuillez verifier vos champs")
         return;
       }
       let token = stripe.createToken(cardElement);
@@ -111,10 +110,7 @@ export default {
 </script>
 
 <style scoped>
-/**
- * The CSS shown here will not be introduced in the Quickstart guide, but shows
- * how you can use CSS to style your Element's container.
- */
+
 .StripeElement {
   box-sizing: border-box;
 
