@@ -96,7 +96,7 @@ export default {
         })
         .then((response) => {
           this.$parent.$parent.toggle = false
-          this.$parent.$parent.$parent.notification(true, "Toute l'équipe Lipton-IT vous remercie pour votre don!")
+          this.$parent.$parent.$parent.notification(true, "Toute l'équipe Lipton-IT vous remercie pour votre don !")
         })
         .catch((error) => {
           alert("Une erreur est survenue :" + error);

@@ -15,7 +15,7 @@
             </div>
             <div class="form__validation">
                 <div class="form__message-validation">
-                    <p>En validant ce formulaire vous autorisez que votre adresse mail soit enregistrée dans nos cookies, envoyer quand même ?</p>
+                    <p>En validant ce formulaire vous acceptez recevoir des mails de notre part et vous nous autorisez à accéder à votre repo</p>
                 </div>
                 <input class="form__submit" type="submit" name="button" value="Scanner" v-on:click="emitToParent">
             </div>

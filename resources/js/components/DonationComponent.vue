@@ -8,7 +8,6 @@
       Donnez
     </button>
     <DonationFormComponent v-if="toggle" />
-    <!-- <button v-on:click="(event) => this.$emit('childToParent', event)" value='explication' type="button" class="header__item">explication</button> -->
     <p class="text-danger">* Seuls les dons en euros (€) sont acceptés.</p>
   </div>
 </template>
