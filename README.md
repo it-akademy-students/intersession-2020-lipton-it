@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master"><img src="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master" alt="Build Status"></a><br>
-  <a href="SUJET.md">Sujet</a> | <a href="#outils-utilisés">Outils utilisés</a> | <a href="#mise-en-place-du-projet">Mise en place du projet</a> | <a href="LICENSE.md">License</a>
+  <a href="SUJET.md">Sujet</a> | <a href="#outils-utilisés">Outils utilisés</a> | <a href="#mise-en-place-du-projet">Mise en place du projet</a> | <a href="LICENSE">License</a>
 </p>
 
 ## Sujet
