@@ -21,6 +21,12 @@
         padding: 0 25px;
         font-size: 1.2em;
         position: relative;
+        transition: 0.3s;
+
+        &:hover {
+            transform: scale(1.1);
+            transition: 0.3s;
+        }
 
         &:focus {
             border: none;
@@ -41,8 +47,9 @@
         }
     }
 }
+
 .disabled {
-    color: grey;
+    color: #0000006e;
     pointer-events: none;
 }
 

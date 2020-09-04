@@ -14,6 +14,11 @@
 
     &__description {
         margin: 20px 0;
+        max-width: 550px;
+
+        span {
+            color: $red;
+        }
     }
 
     &__title {

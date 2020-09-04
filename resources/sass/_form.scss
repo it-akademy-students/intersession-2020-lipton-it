@@ -1,4 +1,9 @@
 .form {
+
+    &__don {
+        max-width: 550px;
+    }
+
     &__input {
         width: 550px;
         margin-bottom: 25px;
@@ -73,11 +78,25 @@
         border: 1px solid white;
         color: white;
         // border: none;
-        padding: 5px 35px;
+        padding: 5px 25px;
         width: fit-content;
+        transition: 0.2s;
 
         &:focus {
             outline: none;
+        }
+
+        &:hover {
+            transition: 0.2s;
+            color: $red;
+            background-color: white;
+            border-color: $red;
+        }
+
+        &--paypal {
+            &:focus {
+                outline: none;
+            }
         }
     }
 

@@ -3,7 +3,7 @@
       <button
         @click="paiementCreditCard=!paiementCreditCard"
         class="form__submit"
-      >Payer {{paiementCreditCard?'par virement':'par carte'}}</button>
+      >Payer {{paiementCreditCard?'par Paypal':'par carte'}}</button>
 
     <CreditCardComponent v-if="paiementCreditCard" />
     <PaypalComponent v-else />

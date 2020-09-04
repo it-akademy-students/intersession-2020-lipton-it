@@ -8,8 +8,10 @@
         src="https://cdn.iconscout.com/icon/free/png-256/paypal-54-675727.png"
         border="0"
         name="submit"
+        class="form__submit--paypal"
         title="PayPal - The safer, easier way to pay online!"
         alt="Bouton Faites un don avec PayPal"
+        height="180"
       />
       <img alt border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1" />
     </form>

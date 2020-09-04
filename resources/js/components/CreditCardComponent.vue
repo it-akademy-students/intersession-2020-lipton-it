@@ -86,7 +86,7 @@ export default {
       });
 
       if (error) {
-        this.$parent.$parent.$parent.notification(false, "Désolé, votre don n'a pas pu aboutir: veuillez verifier vos champs")
+        this.$parent.$parent.$parent.notification(false, "Désolé, votre don n'a pas pu aboutir: Veuillez verifier vos champs")
         return;
       }
       let token = stripe.createToken(cardElement);
