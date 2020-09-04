@@ -1,6 +1,6 @@
 # Intersession 2020 - Groupe Lipton IT
 
-<p align="center"><img src="resources/images/lipton-it.png" height="250"></p>
+<p align="center"><img src="resources/images/banner.png" height="320"></p>
 
 <p align="center">
 <a href="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master"><img src="https://github.com/it-akademy-students/intersession-2020-lipton-it/workflows/Laravel%20Prod/badge.svg?branch=master" alt="Build Status"></a>
